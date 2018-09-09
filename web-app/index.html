@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>My Awesome SPA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+    <h1>Super Web App Name Generator!</h1>
+    <form id="name-form">
+        <label>
+            Give us some words!
+            <input type="text" id="nouns-field" />
+        </label>
+        <button type="submit">See Name Suggestions</button>
+    </form>
+    <div id="results">
+    </div>
+</body>
+
+<script>
+    var form = document.getElementById('name-form');
+    var nounsField = document.getElementById('nouns-field');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var wordsString = nounsField.value;
+
+        if (!wordsString.length) {
+            alert('Please enter some words!');
+            return;
+        }
+
+        var words = wordsString.split(' ');
+
+        console.log(words);
+    });
+</script>
+
+</html>

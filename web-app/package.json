@@ -1,0 +1,14 @@
+{
+  "name": "jsonaws-web-app",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "finalhandler": "^1.1.1",
+    "serve-static": "^1.13.2"
+  }
+}
