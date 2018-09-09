@@ -37,6 +37,14 @@ li::before {
     display: inline-block;
     margin-right: 0.25em;
 }
+.layout-2col {
+    display: flex;
+}
+.layout-2col > * {
+    flex: 0 0 50%;
+    padding: 0 10px;
+}
+
 </style>
 
 		<!-- Printing and PDF exports -->
@@ -131,12 +139,146 @@ li::before {
                     </section>
                 </section>
 
+                <section>
+                    <section>
+                        <h2>Pros & Cons S3 Website Hosting</h2>
+                        <div class="layout-2col">
+                            <div>
+                                <h4>Pros</h4>
+                                <ul>
+                                    <li>Easy to set up</li>
+                                    <li>Inexpensive</li>
+                                    <li>Easy to deploy</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>Cons</h4>
+                                <ul>
+                                    <li>No SSL</li>
+                                    <li>Site always served from server in same geographic region</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Another Option: S3 + Cloudfront</h2>
+                        <p>
+                            <strong>Cloudfront</strong> is amazon's Content Delivery Network (CDN).
+                            You can put cloudfront in front of any website, including one hosted with S3.
+                            It caches files from your website at edge locations geographically close to the user, whereas S3 serves from a single region.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Pros & Cons S3 Website Hosting</h2>
+                        <div class="layout-2col">
+                            <div>
+                                <h4>Pros</h4>
+                                <ul>
+                                    <li>Faster</li>
+                                    <li>Bandwidth cost can be less</li>
+                                    <li>SSL</li>
+                                    <li>TODO jon</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>Cons</h4>
+                                <ul>
+                                    <li>TODO jon</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+
 				<section>
-					<section>
-						<h2>Hosting a SPA as a Static Website on S3</h2>
-                        <p>What is s3? What is a static website?</p>
-					</section>
-				</section>
+					<h2>Requirements for Hosting a Node API</h2>
+                    <ul class="fragment">
+                        <li>We need to be able to upload our JS code</li>
+                        <li class="fragment">We need a URL that will allow our SPA to make HTTP requests to a server that will run our JS code to generate a response</li>
+                    </ul>
+                </section>
+
+				<section>
+                    <section>
+                        <h2>The Serverless Approach</h2>
+                        <ul class="fragment">
+                            <li>Put our node files on USB drives</li>
+                            <li class="fragment">Mail them to our users</li>
+                            <li class="fragment">Look ma! No servers!</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>The Serverless Approach (really)</h2>
+                        <p><strong>Serverless</strong> doesn't mean no servers. It means you don't have to think about servers.
+                        You write your application and give the code to a third party who takes care of running them on servers
+                        whenever you need.</p>
+                    </section>
+                    <section>
+                        <h2>Why Serverless?</h2>
+                        <div class="layout-2col">
+                            <div>
+                                <h4>Pros</h4>
+                                <ul>
+                                    <li>Don't provision/manage servers</li>
+                                    <li>Pay only when your code runs</li>
+                                    <li>Automatic scaling</li>
+                                    <li>Flexibility in when your code runs (cron, events)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>Cons</h4>
+                                <ul>
+                                    <li>Limited language runtimes (Node, Java, C#, Go, Python)</li>
+                                    <li>Local development is more complicated</li>
+                                    <li>Limited resource and max execution time</li>
+                                    <li>Can be difficult to debug (no root, no ssh)</li>
+                                    <li>Can't easily install arbitrary binaries</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <h2>Lambda, Amazon's FaaS</h2>
+                        <p>
+                            A <strong>compute</strong> service that allows you to code without provisionin servers.
+                            It executes your code when requested (cli, on a schedule, when an event happens in aother AWS service).
+                            There are also <strong>Function as a Service</strong> (FaaS) offerings from Google, IBM and Microsoft.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Demo: Creating a Node.js Lambda</h2>
+                        <ul>
+                            <li>Runtime Node.js 8.10</li>
+                            <li>Custom role (write logs)</li>
+                        </ul>
+                        <pre><code>
+exports.handler = (event, context, callback) => {
+    // TODO implement
+    const response = {
+        statusCode: 200,
+        body: JSON.stringify('Hello from Lambda!')
+    };
+    callback(null, response);
+};
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Demo: Invoke Lambda from CLI</h2>
+                        <pre><code>aws lambda invoke --function-name myCoolLambda /tmp/output.txt</code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>What About HTTP? API Gateway!</h2>
+                        <p>
+                            A service to create, publish, monitor and secure APIs at scale. HTTP requests to an API Gateway
+                            can proxy to Lambdas or to any web application running on any server. An API Gateway proxying
+                            to a Lambda allows us to deploy a serverless HTTP API!
+                        </p>
+                    </section>
+                </section>
 
 
 				<section>
