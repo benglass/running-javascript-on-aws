@@ -10,6 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.4",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "serverless-express": "^2.0.7"
+  },
+  "devDependencies": {
+    "serverless": "^1.30.3",
+    "serverless-offline": "^3.25.11"
   }
 }

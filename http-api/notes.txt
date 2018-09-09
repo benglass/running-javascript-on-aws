@@ -1,0 +1,9 @@
+npm install serverless --save-dev
+npm install --save serverless-express
+serverless create --template aws-nodejs
+vi serverless.yml // add express plugin, api endpoints
+vi server.js // use serverless express
+npm run start
+vi http-api/handler.js // create express handler for app
+serverless deploy -v // deploy
+vi ~/Downloads/compiled-cloudformation-template.json
