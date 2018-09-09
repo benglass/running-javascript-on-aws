@@ -90,30 +90,54 @@ li::before {
                     </ul>
 				</section>
 
-				<!-- Example of nested vertical slides -->
+				<section>
+					<h2>Requirements for Hosting a SPA</h2>
+                    <ul class="fragment">
+                        <li>We need to be able to upload our app (html, css, js, images) to a server</li>
+                        <li class="fragment">We need a URL that will allow users to request our app</li>
+                    </ul>
+                </section>
+
 				<section>
 					<section>
-						<h2>Vertical Slides</h2>
-						<p>Slides can be nested inside of each other.</p>
-						<p>Use the <em>Space</em> key to navigate through all slides.</p>
-						<br>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
+						<h2>Simple Storage Service (S3)</h2>
+                        <p>S3 is service that allows you to store and retrieve <strong>objects</strong>.</p>
+                        <p class="fragment"><strong>Objects</strong> are how S3 models storing and retrieving data. An object has a key (a name) and a value (the content) as well as additional information like metadata, access control information and version.</p>
 					</section>
 					<section>
-						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>That's it, time to go back up.</p>
-						<br>
-						<a href="#/2">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
-						</a>
+						<h2>Where do Objects Go?</h2>
+                        <p>S3 objects are stored in <strong>buckets</strong></p>
+                        <p class="fragment"><strong>Buckets</strong> named collections of objects. Every object belongs to a single bucket. Buckets names are globally unique across all AWS accounts.</p>
 					</section>
 				</section>
+
+                <section>
+                    <section>
+                        <h2>What does this have to do with hosting my files?</h2>
+                        <p>You can create an S3 bucket and upload your SPA files (as objects) to it.</p>
+                        <ul class="fragment">
+                            <li>By default, objects are not publicy accessible over HTTP</li>
+                            <li class="fragment">but S3 buckets have a feature for <strong>Website Hosting</strong></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Demo: Hosting a Static Website with S3</h2>
+                        <ul>
+                            <li>Create the bucket with unique name</li>
+                            <li>Properties > Enable "Use this bucket to host a website"</li>
+                            <li>Permissions > Bucket Policy > <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/HostingWebsiteOnS3Setup.html" target="_blank">Add policy to enable public access</a></li>
+                            <li>Upload your files</li>
+                        </ul>
+                    </section>
+                </section>
+
+				<section>
+					<section>
+						<h2>Hosting a SPA as a Static Website on S3</h2>
+                        <p>What is s3? What is a static website?</p>
+					</section>
+				</section>
+
 
 				<section>
 					<h2>Slides</h2>
