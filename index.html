@@ -308,7 +308,39 @@ curl -i -X OPTIONS https://{APIGATEWAYURL}/{STAGE}/message</code></pre>
                         </p>
                     </section>
                     <section>
-                        <h2>Demo: Serverless API Gateway with Lambda Integration</h2>
+                        <h2>Demo: Serverless Framework</h2>
+                        <pre><code class="hljs"># serverless.yml
+service: jsonaws-btvjs-api
+provider:
+    name: aws
+    runtime: nodejs8.10
+    stage: dev
+    region: us-east-1
+
+functions:
+    messages:
+        handler: handler.handler
+        events:
+            - http:
+                path: /messages
+                method: get
+                cors: true</code></pre>
+                    </section>
+                    <section>
+                        <pre><code class="hljs">// handler.js
+exports.handler = (event, context, callback) => {
+    const response = {
+        statusCode: 200,
+				headers: {
+          'Access-Control-Allow-Origins': '*'
+				},
+        body: JSON.stringify({
+          message: 'Hello Burlington JS!'
+        })
+    };
+
+    callback(null, response);
+};</code></pre>
                     </section>
                 </section>
 
