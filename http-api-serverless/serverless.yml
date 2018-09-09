@@ -13,3 +13,6 @@ functions:
                 path: /messages
                 method: get
                 cors: true
+
+plugins:
+    - serverless-offline

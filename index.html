@@ -279,9 +279,6 @@ exports.handler = (event, context, callback) => {
                         </p>
                     </section>
                     <section>
-                        <h2>API Gateway Terms</h2>
-                    </section>
-                    <section>
                         <h2>Demo: Create API Gateway with Lambda Proxy Integration</h2>
                         <ul>
                             <li>Create API (Name)</li>
@@ -342,12 +339,25 @@ exports.handler = (event, context, callback) => {
     callback(null, response);
 };</code></pre>
                     </section>
+                    <section>
+                        <h2>But will it dev?</h2>
+                        <p>
+                            <strong><a href="https://github.com/dherault/serverless-offline">Serverless Offline</a></strong> is a serverless plugin
+                            that emulates AWS λ and API Gateway on your local machine 
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Demo: But will it dev?</h2>
+                        <pre><code class="hljs">npm install serverless-offline --save-dev
+# package.json scripts
+"start:dev": "serverless offline start --port 8008"
+npm run start:dev
+curl -i http://localhost:8008/my-endpoint</code></pre></section>
                 </section>
 
 				<section>
 					<h2>MOAR</h2>
                     <ul>
-                        <li>TODO Use express for serverless? https://serverless.com/blog/serverless-express-rest-api/</li>
                         <li>Other Options: EC2: Low level virtual machines (abstraction level: vm, network)</li>
                         <li>Other Options: Lightsail: High level VPS (abstraction level: vm)</li>
                         <li>Other Options: ECS: Clusters of container instances (abstraction level: instances/clusters)</li>
