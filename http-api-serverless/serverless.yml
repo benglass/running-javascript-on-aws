@@ -1,0 +1,15 @@
+service: jsonaws-btvjs-api
+provider:
+    name: aws
+    runtime: nodejs8.10
+    stage: dev
+    region: us-east-1
+
+functions:
+    messages:
+        handler: handler.handler
+        events:
+            - http:
+                path: /messages
+                method: get
+                cors: true
