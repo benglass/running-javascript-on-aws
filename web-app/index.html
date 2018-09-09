@@ -16,7 +16,7 @@
         </label>
         <button type="submit">See Name Suggestions</button>
     </form>
-    <div id="results">
+    <div id="suggestions">
     </div>
 </body>
 
@@ -33,9 +33,25 @@
         }
 
         var words = wordsString.split(' ');
+        var wordsQuery = words.join('&words=');
 
-        console.log(words);
+        fetch(`http://localhost:8000/suggestions?count=10&words=${wordsQuery}`)
+            .then(r => r.json())
+            .then(d => d.suggestions)
+            .then(renderSuggestions);
     });
+
+    var suggestionsContainer = document.getElementById('suggestions');
+    renderSuggestions = suggestions => {
+        var html = `
+            <ul>
+                ${suggestions.map(suggestion =>
+                    `<li>${suggestion}</li>`
+                 ).join('')}
+            </ul>
+        `;
+        suggestionsContainer.innerHTML = html;
+    };
 </script>
 
 </html>
