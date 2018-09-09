@@ -278,14 +278,56 @@ exports.handler = (event, context, callback) => {
                             to a Lambda allows us to deploy a serverless HTTP API!
                         </p>
                     </section>
+                    <section>
+                        <h2>API Gateway Terms</h2>
+                    </section>
+                    <section>
+                        <h2>Demo: Create API Gateway with Lambda Proxy Integration</h2>
+                        <ul>
+                            <li>Create API (Name)</li>
+                            <li>Actions > Create Resource</li>
+                            <li>Enable CORS</li>
+                            <li>Actions > Create Method (GET)</li>
+                            <li>Lambda Function</li>
+                            <li>Use Proxy Integration</li>
+                            <li>Actions > Deploy API (Stage: dev)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Demo: Make an API Request</h2>
+                        <pre><code class="hljs">curl -i https://{APIGATEWAYURL}/{STAGE}/message
+curl -i -X OPTIONS https://{APIGATEWAYURL}/{STAGE}/message</code></pre>
+                    </section>
                 </section>
 
+                <section>
+                    <section>
+                        <h2>Serverless (the Framework)</h2>
+                        <p>
+                            Open-source CLI for building and deploying serverless applications to cloud providers (AWS, Azure, Google, IBM, Kubernetes).
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Demo: Serverless API Gateway with Lambda Integration</h2>
+                    </section>
+                </section>
 
 				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="https://slides.com" target="_blank">https://slides.com</a>.
-					</p>
+                    <section>
+                        <h2>Putting it Together</h2>
+                        <ul>
+                            <li>SPA should make requests to API Gateway</li>
+                            <li>Lambda must return Access-Control-Allow-Origin header for GET</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Next Steps</h2>
+                        <ul>
+                            <li>Custom domain for SPA https://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html</li>
+                            <li>SSL for SPA via Cloudfront https://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-serve-static-website/</li>
+                            <li>Custom domain for API https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html</li>
+                        </ul>
+                    </section>
 				</section>
 
 				<section>
