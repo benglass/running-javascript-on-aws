@@ -98,6 +98,8 @@ li::before {
                     </ul>
 				</section>
 
+                <!-- TODO: Show the SPA Example -->
+
 				<section>
 					<h2>Requirements for Hosting a SPA</h2>
                     <ul class="fragment">
@@ -149,6 +151,7 @@ li::before {
                                     <li>Easy to set up</li>
                                     <li>Inexpensive</li>
                                     <li>Easy to deploy</li>
+                                    <li>Scales</li>
                                 </ul>
                             </div>
                             <div>
@@ -170,7 +173,7 @@ li::before {
                         </p>
                     </section>
                     <section>
-                        <h2>Pros & Cons S3 Website Hosting</h2>
+                        <h2>Pros & Cons Cloudfront</h2>
                         <div class="layout-2col">
                             <div>
                                 <h4>Pros</h4>
@@ -185,10 +188,21 @@ li::before {
                                 <h4>Cons</h4>
                                 <ul>
                                     <li>TODO jon</li>
+                                    <li>Additional cost</li>
+                                    <li>Edge cache propagation time</li>
                                 </ul>
                             </div>
                         </div>
                     </section>
+                </section>
+
+                <section>
+                    <h2>Next Steps</h2>
+                    <ul>
+                        <li>Custom domain for SPA https://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html</li>
+                        <li>SSL for SPA via Cloudfront https://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-serve-static-website/</li>
+                        <li>Image upload and storage for app</li>
+                    </ul>
                 </section>
 
 				<section>
@@ -241,8 +255,8 @@ li::before {
                     <section>
                         <h2>Lambda, Amazon's FaaS</h2>
                         <p>
-                            A <strong>compute</strong> service that allows you to code without provisionin servers.
-                            It executes your code when requested (cli, on a schedule, when an event happens in aother AWS service).
+                            A <strong>compute</strong> service that allows you to code without provisioning servers.
+                            It executes your code when you want (cli, on a schedule, when an event happens in another AWS service).
                             There are also <strong>Function as a Service</strong> (FaaS) offerings from Google, IBM and Microsoft.
                         </p>
                     </section>
@@ -253,6 +267,7 @@ li::before {
                             <li>Custom role (write logs)</li>
                         </ul>
                         <pre><code>
+// TODO: Change to async
 exports.handler = (event, context, callback) => {
     // TODO implement
     const response = {
@@ -280,6 +295,7 @@ exports.handler = (event, context, callback) => {
                     </section>
                     <section>
                         <h2>Demo: Create API Gateway with Lambda Proxy Integration</h2>
+                        <!-- TODO: Explain proxy integration vs non, explain method response -->
                         <ul>
                             <li>Create API (Name)</li>
                             <li>Actions > Create Resource</li>
@@ -297,6 +313,23 @@ curl -i -X OPTIONS https://{APIGATEWAYURL}/{STAGE}/message</code></pre>
                     </section>
                 </section>
 
+				<section>
+                    <section>
+                        <h2>Putting it Together</h2>
+                        <ul>
+                            <li>SPA should make requests to API Gateway</li>
+                            <li>Lambda must return Access-Control-Allow-Origin header for GET</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Next Steps</h2>
+                        <ul>
+                            <li>SSL and Custom domain for API TODO SSL Link https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html</li>
+                            <li>Edge Caching for API TODO: LInk</li>
+                        </ul>
+                    </section>
+				</section>
+
                 <section>
                     <section>
                         <h2>Serverless (the Framework)</h2>
@@ -306,7 +339,9 @@ curl -i -X OPTIONS https://{APIGATEWAYURL}/{STAGE}/message</code></pre>
                     </section>
                     <section>
                         <h2>Demo: Serverless Framework</h2>
-                        <pre><code class="hljs"># serverless.yml
+                        <pre><code class="hljs">$ npm install serverless --save-dev
+
+# serverless.yml
 service: jsonaws-btvjs-api
 provider:
     name: aws
@@ -316,7 +351,7 @@ provider:
 
 functions:
     messages:
-        handler: handler.handler
+        handler: index.handler
         events:
             - http:
                 path: /messages
@@ -324,20 +359,22 @@ functions:
                 cors: true</code></pre>
                     </section>
                     <section>
-                        <pre><code class="hljs">// handler.js
-exports.handler = (event, context, callback) => {
+                        <pre><code class="hljs">// index.js
+exports.handler = async (event, context, callback) => {
     const response = {
         statusCode: 200,
-				headers: {
-          'Access-Control-Allow-Origins': '*'
-				},
+        headers: {
+            'Access-Control-Allow-Origins': '*'
+        },
         body: JSON.stringify({
-          message: 'Hello Burlington JS!'
+            message: 'Hello Burlington JS!'
         })
     };
 
-    callback(null, response);
-};</code></pre>
+    return response;
+};
+                        
+$ serverless deploy</code></pre>
                     </section>
                     <section>
                         <h2>But will it dev?</h2>
@@ -364,25 +401,8 @@ curl -i http://localhost:8008/my-endpoint</code></pre></section>
                         <li>Other Options: Fargate: Automatically deploy clusters on ECS or EC2 (abstraction level: images)</li>
                         <li>Other Options: Elastic Beanstalk: Automatically provision and manage services (ECS, DB, Load Balances, etc.) based on analyzing your application (abstraction level: application/services)</li>
                         <li>Pros and cons for above</li>
+                        <li>How they could be used to host SPA</li>
                     </ul>
-				</section>
-
-				<section>
-                    <section>
-                        <h2>Putting it Together</h2>
-                        <ul>
-                            <li>SPA should make requests to API Gateway</li>
-                            <li>Lambda must return Access-Control-Allow-Origin header for GET</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h2>Next Steps</h2>
-                        <ul>
-                            <li>Custom domain for SPA https://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html</li>
-                            <li>SSL for SPA via Cloudfront https://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-serve-static-website/</li>
-                            <li>Custom domain for API https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html</li>
-                        </ul>
-                    </section>
 				</section>
 
 				<section>
