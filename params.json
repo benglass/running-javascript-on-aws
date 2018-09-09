@@ -1,6 +1,6 @@
 {
   "name": "running-javascript-on-aws",
-  "tagline": "Running a client side javascript SPA backed by a node API on AWS",
+  "tagline": "Hosting a SPA backed by a node API on AWS",
   "body": "",
   "note": ""
 }
