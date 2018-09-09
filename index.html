@@ -19,6 +19,25 @@
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<style>
+strong, .highlight { color: #42affa; }
+.intro .present, .intro .present * {
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
+}
+.lowlight { opacity: 0.5; }
+ul, li { list-style: none; }
+li::before {
+    list-style: none;
+    font-family: FontAwesome;
+    color: #42affa;
+    opacity: 0.25;
+    content: '\f061';
+    display: inline-block;
+    margin-right: 0.25em;
+}
+</style>
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -58,10 +77,17 @@
 				</section>
 
 				<section>
-					<h2>Hello There</h2>
-					<p>
-						reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
-					</p>
+					<h2>You've Written a SPA!</h2>
+                    <p>
+                        It's backed by an Node.js API! But now you need a place to host your client-side and server-side javascript.
+                        <strong>How about AWS?</strong>
+                    </p>
+                    <ul class="fragment">
+                        <li>What service(s) could host the SPA?</li>
+                        <li class="fragment">What about the API?</li>
+                        <li class="fragment">Should you host it as a docker image?</li>
+                        <li class="fragment">Should you be using "serverless"?</li>
+                    </ul>
 				</section>
 
 				<!-- Example of nested vertical slides -->
