@@ -7,10 +7,10 @@ provider:
 
 functions:
     messages:
-        handler: handler.handler
+        handler: index.handler
         events:
             - http:
-                path: /messages
+                path: /suggestions
                 method: get
                 cors: true
 
