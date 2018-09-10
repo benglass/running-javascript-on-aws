@@ -41,7 +41,7 @@
         }
 
         var words = wordsString.split(' ');
-        var wordsQuery = words.join('&words=');
+        var wordsQuery = words.join(',');
 
         //fetch(`https://gbitq0ixwl.execute-api.us-east-1.amazonaws.com/default/nameSuggestionsAPIGateway?count=10&words=${wordsQuery}`, {
         //fetch(`https://gbitq0ixwl.execute-api.us-east-1.amazonaws.com/default/name-suggestions-v2?count=10&words=${wordsQuery}`, {
