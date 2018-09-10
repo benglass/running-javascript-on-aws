@@ -77,7 +77,7 @@ function adjectiveStrategy(noun) {
 }
 
 function startupifyStrategy(noun) {
-  return `${noun}${getRandomElement(startupSuffixes)} `;
+  return `${noun}${getRandomElement(startupSuffixes)}`;
 }
 
 const strategies = [colorStrategy, adjectiveStrategy, startupifyStrategy];
