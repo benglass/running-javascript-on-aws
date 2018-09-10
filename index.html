@@ -44,6 +44,9 @@ li::before {
     flex: 0 0 50%;
     padding: 0 10px;
 }
+.reveal small {
+    vertical-align: middle;
+}
 
 </style>
 
@@ -68,8 +71,8 @@ li::before {
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Running Javascript on AWS</h1>
-					<h3>Hosting a SPA backed by a node API on AWS</h3>
+                    <h1>Running <strong>JS</strong> <small>on</small> <strong>AWS</strong></h1>
+                    <h3>Hosting a <strong>SPA</strong><br />backed by a <strong>node.js API</strong> on AWS</h3>
 
                     <div style="text-align: right; padding-top: 1em;">
                         <h4 style="margin-bottom: 0">Ben Glassman</h4>
@@ -85,37 +88,42 @@ li::before {
 				</section>
 
 				<section>
-					<h2>You've Written a SPA!</h2>
-                    <p>
-                        It's backed by an Node.js API! But now you need a place to host your client-side and server-side javascript.
-                        <strong>How about AWS?</strong>
-                    </p>
-                    <ul class="fragment">
-                        <li>What service(s) could host the SPA?</li>
-                        <li class="fragment">What about the API?</li>
-                        <li class="fragment">Should you host it as a docker image?</li>
-                        <li class="fragment">Should you be using "serverless"?</li>
-                    </ul>
+                    <section>
+                        <h2>You've Written a <strong>SPA!</strong></h2>
+                        <p>
+                            It's backed by an Node.js API! But now you need a place to host your client-side and server-side javascript.
+                            <strong>How about AWS?</strong>
+                        </p>
+                        <ul class="fragment">
+                            <li>What service(s) could host the <strong>SPA?</strong></li>
+                            <li class="fragment">What about the <strong>API?</strong></li>
+                            <li class="fragment">Should you host it as a docker image?</li>
+                            <li class="fragment">Should you go <strong>serverless</strong>?</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Demo: Epithetify</h2>
+                    </section>
 				</section>
 
                 <!-- TODO: Show the SPA Example -->
 
 				<section>
-					<h2>Requirements for Hosting a SPA</h2>
+                    <h2>Requirements<br /><small>for</small> Hosting <small>a</small> <strong>SPA</strong></h2>
                     <ul class="fragment">
-                        <li>We need to be able to upload our app (html, css, js, images) to a server</li>
+                        <li>We need to be able to upload our files (html, css, js, images) to a server</li>
                         <li class="fragment">We need a URL that will allow users to request our app</li>
                     </ul>
                 </section>
 
 				<section>
 					<section>
-						<h2>Simple Storage Service (S3)</h2>
+                        <h2><strong>S3</strong> Simple Storage Service</h2>
                         <p>S3 is service that allows you to store and retrieve <strong>objects</strong>.</p>
                         <p class="fragment"><strong>Objects</strong> are how S3 models storing and retrieving data. An object has a key (a name) and a value (the content) as well as additional information like metadata, access control information and version.</p>
 					</section>
 					<section>
-						<h2>Where do Objects Go?</h2>
+						<h2>Where do Objects go?</h2>
                         <p>S3 objects are stored in <strong>buckets</strong></p>
                         <p class="fragment"><strong>Buckets</strong> named collections of objects. Every object belongs to a single bucket. Buckets names are globally unique across all AWS accounts.</p>
 					</section>
