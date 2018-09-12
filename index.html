@@ -47,7 +47,13 @@ li::before {
 .reveal small {
     vertical-align: middle;
 }
-
+.reveal h2 {
+    font-size: 1.4em;
+    line-height: 1.1;
+}
+.reveal pre code {
+    max-height: 500px;
+}
 </style>
 
 		<!-- Printing and PDF exports -->
@@ -72,7 +78,7 @@ li::before {
 			<div class="slides">
 				<section>
                     <h1>Running <strong>JS</strong> <small>on</small> <strong>AWS</strong></h1>
-                    <h3>Hosting a <strong>SPA</strong><br />backed by a <strong>node.js API</strong> on AWS</h3>
+                    <h3>Hosting a <strong>SPA</strong><br />backed by a <strong>node API</strong> on AWS</h3>
 
                     <div style="text-align: right; padding-top: 1em;">
                         <h4 style="margin-bottom: 0">Ben Glassman</h4>
@@ -89,9 +95,9 @@ li::before {
 
 				<section>
                     <section>
-                        <h2>You've Written a <strong>SPA!</strong></h2>
+                        <h2>So You've Written a <strong>SPA!</strong></h2>
                         <p>
-                            It's backed by an Node.js API! But now you need a place to host your client-side and server-side javascript.
+                            It's backed by an node API! But now you need a place to host your client-side and server-side javascript.<br />
                             <strong>How about AWS?</strong>
                         </p>
                         <ul class="fragment">
@@ -102,11 +108,9 @@ li::before {
                         </ul>
                     </section>
                     <section>
-                        <h2>Demo: Epithetify</h2>
+                        <h2><strong>Demo:</strong> <a href="http://localhost:3000" target="_blank">Epithetify</a></h2>
                     </section>
 				</section>
-
-                <!-- TODO: Show the SPA Example -->
 
 				<section>
                     <h2>Requirements<br /><small>for</small> Hosting <small>a</small> <strong>SPA</strong></h2>
@@ -120,12 +124,14 @@ li::before {
 					<section>
                         <h2><strong>S3</strong> Simple Storage Service</h2>
                         <p>S3 is service that allows you to store and retrieve <strong>objects</strong>.</p>
-                        <p class="fragment"><strong>Objects</strong> are how S3 models storing and retrieving data. An object has a key (a name) and a value (the content) as well as additional information like metadata, access control information and version.</p>
+                        <p class="fragment"><strong>Objects</strong> are how S3 models storing and retrieving data.
+                        An object has a <strong>key</strong> (a name) and a <strong>value</strong> (the content) as well as additional information like 
+                        <strong>metadata,</strong>, <strong>access control information</strong> and <strong>version</strong>.</p>
 					</section>
 					<section>
-						<h2>Where do Objects go?</h2>
+						<h2>Where are Objects stored?</h2>
                         <p>S3 objects are stored in <strong>buckets</strong></p>
-                        <p class="fragment"><strong>Buckets</strong> named collections of objects. Every object belongs to a single bucket. Buckets names are globally unique across all AWS accounts.</p>
+                        <p class="fragment"><strong>Buckets</strong> are named collections of objects. Every object belongs to a single bucket. Buckets names are globally unique across all AWS accounts.</p>
 					</section>
 				</section>
 
@@ -134,17 +140,18 @@ li::before {
                         <h2>What does this have to do with hosting my files?</h2>
                         <p>You can create an S3 bucket and upload your SPA files (as objects) to it.</p>
                         <ul class="fragment">
-                            <li>By default, objects are not publicy accessible over HTTP</li>
+                            <li>By default, objects are not publicly accessible and can't be retrieved over HTTP</li>
                             <li class="fragment">but S3 buckets have a feature for <strong>Website Hosting</strong></li>
                         </ul>
                     </section>
                     <section>
-                        <h2>Demo: Hosting a Static Website with S3</h2>
+                        <h2><strong>Demo:</strong> Hosting a Static Website with S3</h2>
                         <ul>
-                            <li>Create the bucket with unique name</li>
-                            <li>Properties > Enable "Use this bucket to host a website"</li>
+                            <li>Create the bucket with <strong>unique name</strong></li>
+                            <li>Properties > Enable <strong>Use this bucket to host a website</strong></li>
                             <li>Permissions > Bucket Policy > <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/HostingWebsiteOnS3Setup.html" target="_blank">Add policy to enable public access</a></li>
                             <li>Upload your files</li>
+                            <li>View the site!</li>
                         </ul>
                     </section>
                 </section>
@@ -154,7 +161,7 @@ li::before {
                         <h2>Pros & Cons S3 Website Hosting</h2>
                         <div class="layout-2col">
                             <div>
-                                <h4>Pros</h4>
+                                <h4><strong>Pros</strong></h4>
                                 <ul>
                                     <li>Easy to set up</li>
                                     <li>Inexpensive</li>
@@ -163,41 +170,45 @@ li::before {
                                 </ul>
                             </div>
                             <div>
-                                <h4>Cons</h4>
+                                <h4><strong>cons</strong></h4>
                                 <ul>
                                     <li>No SSL</li>
-                                    <li>Site always served from server in same geographic region</li>
+                                    <li>Served from one geographic region</li>
                                 </ul>
                             </div>
                         </div>
                     </section>
 
                     <section>
-                        <h2>Another Option: S3 + Cloudfront</h2>
+                        <h2>
+                            Another Option:<br />
+                            <strong>S3</strong> + <strong>Cloudfront</strong>
+                        </h2>
                         <p>
-                            <strong>Cloudfront</strong> is amazon's Content Delivery Network (CDN).
-                            You can put cloudfront in front of any website, including one hosted with S3.
-                            It caches files from your website at edge locations geographically close to the user, whereas S3 serves from a single region.
+                            <strong>Cloudfront</strong> is amazon's <strong>Content Delivery Network (CDN)</strong>.
+                            You can put cloudfront in front of <strong>any website</strong>, including one hosted with S3.
+                            It caches files from your website at edge locations <strong>geographically close to the user</strong>, whereas S3 serves from a single region.
                         </p>
                     </section>
                     <section>
                         <h2>Pros & Cons Cloudfront</h2>
                         <div class="layout-2col">
                             <div>
-                                <h4>Pros</h4>
+                                <h4><strong>Pros</strong></h4>
                                 <ul>
                                     <li>Faster</li>
-                                    <li>Bandwidth cost can be less</li>
+                                    <li>Bandwidth cost can be less jon?</li>
                                     <li>SSL</li>
                                     <li>TODO jon</li>
                                 </ul>
                             </div>
                             <div>
-                                <h4>Cons</h4>
+                                <h4><strong>Cons</strong></h4>
                                 <ul>
                                     <li>TODO jon</li>
+                                    <li>More configuration</li>
                                     <li>Additional cost</li>
-                                    <li>Edge cache propagation time</li>
+                                    <li>Edge content propagation/cache expiration</li>
                                 </ul>
                             </div>
                         </div>
@@ -205,25 +216,26 @@ li::before {
                 </section>
 
                 <section>
-                    <h2>Next Steps</h2>
+                    <h2><strong>Next</strong> Steps</h2>
                     <ul>
-                        <li>Custom domain for SPA https://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html</li>
-                        <li>SSL for SPA via Cloudfront https://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-serve-static-website/</li>
-                        <li>Image upload and storage for app</li>
+                        <li><a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html">Custom Domain / www redirect</a></li>
+                        <li><a href="https://simonecarletti.com/blog/2016/08/redirect-domain-http-https-www-cloudfront/">S3 + Cloudfront with Custom domain / www redirect</a></li>
+                        <li><a href="https://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-serve-static-website/">S3 + Cloudfront with SSL</a></li>
                     </ul>
                 </section>
 
 				<section>
-					<h2>Requirements for Hosting a Node API</h2>
+                    <h2>Requirements <small>for</small><br />Hosting <small>a</small> <strong>node</strong> API</h2>
                     <ul class="fragment">
                         <li>We need to be able to upload our JS code</li>
                         <li class="fragment">We need a URL that will allow our SPA to make HTTP requests to a server that will run our JS code to generate a response</li>
+                        <li class="fragment">We need CORS support</li>
                     </ul>
                 </section>
 
 				<section>
                     <section>
-                        <h2>The Serverless Approach</h2>
+                        <h2>The <strong>Serverless</strong> Approach</h2>
                         <ul class="fragment">
                             <li>Put our node files on USB drives</li>
                             <li class="fragment">Mail them to our users</li>
@@ -231,79 +243,106 @@ li::before {
                         </ul>
                     </section>
                     <section>
-                        <h2>The Serverless Approach (really)</h2>
+                        <h2>The <strong>Serverless</strong> Approach<br /><small>no, really</small></h2>
                         <p><strong>Serverless</strong> doesn't mean no servers. It means you don't have to think about servers.
-                        You write your application and give the code to a third party who takes care of running them on servers
+                        You write your application and give the code to a third party who takes care of running it on servers
                         whenever you need.</p>
                     </section>
                     <section>
                         <h2>Why Serverless?</h2>
                         <div class="layout-2col">
                             <div>
-                                <h4>Pros</h4>
+                                <h4><strong>Pros</strong></h4>
                                 <ul>
-                                    <li>Don't provision/manage servers</li>
+                                    <li>Don't provision or manage servers</li>
                                     <li>Pay only when your code runs</li>
                                     <li>Automatic scaling</li>
-                                    <li>Flexibility in when your code runs (cron, events)</li>
+                                    <li>Flexibility in when your code runs</li>
                                 </ul>
                             </div>
                             <div>
-                                <h4>Cons</h4>
+                                <h4><strong>Cons</strong></h4>
                                 <ul>
-                                    <li>Limited language runtimes (Node, Java, C#, Go, Python)</li>
-                                    <li>Local development is more complicated</li>
-                                    <li>Limited resource and max execution time</li>
-                                    <li>Can be difficult to debug (no root, no ssh)</li>
-                                    <li>Can't easily install arbitrary binaries</li>
+                                    <li>Limited languages (node, Java, C#, Go, Python)</li>
+                                    <li>Local development</li>
+                                    <li>Limited resources and execution time</li>
+                                    <li>Debuggability</li>
+                                    <li>Can't install binaries</li>
                                 </ul>
                             </div>
                         </div>
                     </section>
                     <section>
-                        <h2>Lambda, Amazon's FaaS</h2>
+                        <h2><strong>Lambda</strong>: Amazon's <strong>FaaS</strong></h2>
                         <p>
-                            A <strong>compute</strong> service that allows you to code without provisioning servers.
-                            It executes your code when you want (cli, on a schedule, when an event happens in another AWS service).
+                            A <strong>compute</strong> service that allows you to run code without provisioning servers.
+                            It executes your code when you want (cli, schedule, triggers).
                             There are also <strong>Function as a Service</strong> (FaaS) offerings from Google, IBM and Microsoft.
                         </p>
                     </section>
                     <section>
-                        <h2>Demo: Creating a Node.js Lambda</h2>
+                        <h2><strong>Demo:</strong> Creating a<br />Node Lambda</h2>
                         <ul>
                             <li>Runtime Node.js 8.10</li>
                             <li>Custom role (write logs)</li>
                         </ul>
-                        <pre><code>
-// TODO: Change to async
-exports.handler = (event, context, callback) => {
-    // TODO implement
-    const response = {
-        statusCode: 200,
-        body: JSON.stringify('Hello from Lambda!')
-    };
-    callback(null, response);
-};
-                        </code></pre>
                     </section>
                     <section>
-                        <h2>Demo: Invoke Lambda from CLI</h2>
-                        <pre><code>aws lambda invoke --function-name myCoolLambda /tmp/output.txt</code></pre>
+                        <h2><strong>Demo:</strong> Code</h2>
+                        <pre><code>const namerator = require('./namerator');
+
+exports.handler = async (event) => {
+    const words = event.words.split(',');
+    const count = event.count;
+    const suggestions = namerator.getNameSuggestions(words, count);
+
+    return JSON.stringify({ suggestions });
+};</pre></code>
+                    </section>
+                    <section>
+                        <h2><strong>Demo:</strong> Invoke Lambda from CLI</h2>
+                        <pre><code>aws lambda invoke --function-name myCoolLambda \
+    --payload '{"words": "biscuit,hammer", "count": 4}' \
+    /tmp/output.txt</code></pre>
                     </section>
                 </section>
 
                 <section>
                     <section>
-                        <h2>What About HTTP? API Gateway!</h2>
+                        <h2>What About <strong>HTTP</strong>?<br /><strong>API Gateway</strong>!</h2>
                         <p>
                             A service to create, publish, monitor and secure APIs at scale. HTTP requests to an API Gateway
-                            can proxy to Lambdas or to any web application running on any server. An API Gateway proxying
-                            to a Lambda allows us to deploy a serverless HTTP API!
+                            can <strong>proxy to Lambdas</strong> or to any web application running on any server. An API Gateway proxying
+                            to a Lambda allows us to deploy a <strong>serverless HTTP API!</strong>
                         </p>
                     </section>
                     <section>
-                        <h2>Demo: Create API Gateway with Lambda Proxy Integration</h2>
-                        <!-- TODO: Explain proxy integration vs non, explain method response -->
+                        <h2><strong>Demo:</strong> Code</h2>
+                        <pre><code>const namerator = require('./namerator');
+
+exports.handler = async (event) => {
+    const words = event.queryStringParameters.words.split(',');
+    const count = event.queryStringParameters.count;
+    const suggestions = namerator.getNameSuggestions(words, count);
+
+    return {
+        statusCode: 200,
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify({ suggestions })
+    };
+};</pre></code>
+                    </section>
+                    <section>
+                        <h2><strong>Demo:</strong> Invoke Lambda from CLI w/ API Gateway Event Format</h2>
+                        <pre><code>aws lambda invoke --function-name myCoolLambda \
+    --payload '{"queryStringParameters": {"words":"biscuit,hammer","count": 4}}' \
+    /tmp/output.txt</code></pre>
+                    </section>
+                    <section>
+                        <h2><strong>Demo:</strong> Create API Gateway with Lambda Proxy Integration</h2>
+                        <!-- TODO: Explain proxy integration vs non, explain method response, jon -->
                         <ul>
                             <li>Create API (Name)</li>
                             <li>Actions > Create Resource</li>
@@ -315,9 +354,9 @@ exports.handler = (event, context, callback) => {
                         </ul>
                     </section>
                     <section>
-                        <h2>Demo: Make an API Request</h2>
-                        <pre><code class="hljs">curl -i https://{APIGATEWAYURL}/{STAGE}/message
-curl -i -X OPTIONS https://{APIGATEWAYURL}/{STAGE}/message</code></pre>
+                        <h2><strong>Demo:</strong> Make an API Request</h2>
+                        <pre><code class="hljs">curl -i https://{APIGATEWAYURL}/{STAGE}/suggestions
+curl -i -X OPTIONS https://{APIGATEWAYURL}/{STAGE}/suggestions</code></pre>
                     </section>
                 </section>
 
@@ -346,7 +385,7 @@ curl -i -X OPTIONS https://{APIGATEWAYURL}/{STAGE}/message</code></pre>
                         </p>
                     </section>
                     <section>
-                        <h2>Demo: Serverless Framework</h2>
+                        <h2><strong>Demo:</strong> Serverless Framework</h2>
                         <pre><code class="hljs">$ npm install serverless --save-dev
 
 # serverless.yml
@@ -392,7 +431,7 @@ $ serverless deploy</code></pre>
                         </p>
                     </section>
                     <section>
-                        <h2>Demo: But will it dev?</h2>
+                        <h2><strong>Demo:</strong> But will it dev?</h2>
                         <pre><code class="hljs">npm install serverless-offline --save-dev
 # package.json scripts
 "start:dev": "serverless offline start --port 8008"
@@ -707,6 +746,8 @@ Reveal.addEventListener( 'customevent', function() {
 				progress: true,
 				history: true,
 				center: true,
+                width: 1200,
+                height: 700,
 
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 
