@@ -170,9 +170,9 @@ li::before {
                                 </ul>
                             </div>
                             <div>
-                                <h4><strong>cons</strong></h4>
+                                <h4><strong>Cons</strong></h4>
                                 <ul>
-                                    <li>No SSL</li>
+                                    <li>No SSL!!!!</li>
                                     <li>Served from one geographic region</li>
                                 </ul>
                             </div>
@@ -181,7 +181,7 @@ li::before {
 
                     <section>
                         <h2>
-                            Another Option:<br />
+                            Improved Option:<br />
                             <strong>S3</strong> + <strong>Cloudfront</strong>
                         </h2>
                         <p>
@@ -197,15 +197,12 @@ li::before {
                                 <h4><strong>Pros</strong></h4>
                                 <ul>
                                     <li>Faster</li>
-                                    <li>Bandwidth cost can be less jon?</li>
                                     <li>SSL</li>
-                                    <li>TODO jon</li>
                                 </ul>
                             </div>
                             <div>
                                 <h4><strong>Cons</strong></h4>
                                 <ul>
-                                    <li>TODO jon</li>
                                     <li>More configuration</li>
                                     <li>Additional cost</li>
                                     <li>Edge content propagation/cache expiration</li>
@@ -342,7 +339,6 @@ exports.handler = async (event) => {
                     </section>
                     <section>
                         <h2><strong>Demo:</strong> Create API Gateway with Lambda Proxy Integration</h2>
-                        <!-- TODO: Explain proxy integration vs non, explain method response, jon -->
                         <ul>
                             <li>Create API (Name)</li>
                             <li>Actions > Create Resource</li>
@@ -365,14 +361,15 @@ curl -i -X OPTIONS https://{APIGATEWAYURL}/{STAGE}/suggestions</code></pre>
                         <h2>Putting it Together</h2>
                         <ul>
                             <li>SPA should make requests to API Gateway</li>
-                            <li>Lambda must return Access-Control-Allow-Origin header for GET</li>
+                            <li>Lambda returns Access-Control-Allow-Origin header for GET</li>
                         </ul>
                     </section>
                     <section>
                         <h2>Next Steps</h2>
                         <ul>
-                            <li>SSL and Custom domain for API TODO SSL Link https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html</li>
-                            <li>Edge Caching for API TODO: LInk</li>
+                            <li><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains-prerequisites.html">SSL with Amazon Certficiate Manager (ACM)</a></li>
+                            <li><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html">Custom Domain</a></li>
+                            <li><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/create-api-resources-methods.html">Edge Caching</a></li>
                         </ul>
                     </section>
 				</section>
@@ -401,7 +398,7 @@ functions:
         handler: index.handler
         events:
             - http:
-                path: /messages
+                path: /suggestions
                 method: get
                 cors: true</code></pre>
                     </section>
