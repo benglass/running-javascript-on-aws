@@ -205,7 +205,7 @@ li::before {
                                 <ul>
                                     <li>More configuration</li>
                                     <li>Additional cost</li>
-                                    <li>Edge content propagation/cache expiration</li>
+                                    <li>Cache invalidation</li>
                                 </ul>
                             </div>
                         </div>
@@ -438,8 +438,7 @@ curl -i http://localhost:8008/my-endpoint</code></pre></section>
 
 				<section>
                     <section>
-                        <h2><strong>Lambda</strong> A great place to start</h2>
-                        <p>Lambda is a good default choice for deploying to AWS.</p>
+                        <h2><strong>Lambda</strong><br /><small>A good default for backends</small></h2>
                         <ul class="fragment">
                             <li>Focus on code rather than infrastructure.</li>
                             <li class="fragment">Cheap (pay only when your code is run)</li>
@@ -453,41 +452,36 @@ curl -i http://localhost:8008/my-endpoint</code></pre></section>
                         <ul class="fragment">
                             <li>Long-running tasks (5 min max)</li>
                             <li class="fragment">High memory tasks (~3gb limit)</li>
-                            <li class="fragment">Hard to install binaries</li>
-                            <li class="fragment">No control over security/network isolation</li>
+                            <li class="fragment">Need to install custom binaries</li>
+                            <li class="fragment">Need high level of security/network isolation</li>
                         </ul>
                     </section>
                     <section>
-                        <h2><strong>Elastic Beanstalk</strong>: </h2>
-                        <p>You upload your code and Elastic Beanstalk automatically handles provisioning of the right AWS services, load balancing, auto-scaling, health monitoring, databases and more.</p>
-                        <p><strong>Abstraction Level</strong>: Zip File of Your Code</p>
+                        <h2><strong>Elastic Beanstalk</strong><br /><small>Provisions Services for You Based on Your Code</small></h2>
+                        <p>Similar to Lambda in that you <strong>deploy code</strong> and don't have to provision infrastructure. Elastic Beanstalk handles provisioning of the right AWS services: multiple app instances w/ load balancer, databases, logging and more.</p>
                     </section>
                     <section>
-                        <h2><strong>Lightsail</strong>: VPS on AWS</h2>
-                        <p>Predictable/fixed monthly cost and resources. Competitor to Digital Ocean.</p>
-                        <p><strong>Abstraction Level</strong>: SSH</p>
+                        <h2><strong>Elastic Container Service</strong><br /><small>Clusters of Docker Containers</small></h2>
+                        <p>Deploy a <strong>docker image</strong> of your application and AWS will take care of running a cluster of instances. Use a load balancer to route incoming traffic to instances. Set up auto-scaling rules to have your cluster size adapt to request volume. <small>Elastic Beanstalk is (likely) provisioning an ECS cluster for you with a load balancer</small></p>
                     </section>
                     <section>
-                        <h2><strong>EC2</strong>: Low-Level Virtual Machines</h2>
-                        <p><strong>Abstraction Level</strong>: SSH</p>
+                        <h2><strong>Lightsail</strong><br /><small>VPS on AWS</small></h2>
+                        <p><strong>SSH</strong> access to a VPS. Predictable/fixed monthly cost and resources (vs. standard AWS billing based on usage). Few choice on the VM specs. Root-level access to machine provisioning (pro and a con). We'd likely install and configure node, a web server and something to keep our app running (pm2, forever). An alternative to simple VPS providers such as Digital Ocean. </p>
                     </section>
                     <section>
-                        <h2><strong>ECS</strong>: Clusters of Containers</h2>
-                        <p><strong>Abstraction Level</strong>: Docker Images</p>
+                        <h2><strong>EC2: Elastic Compute Cloud</strong><br /><small>Virtual Machines on AWS</small></h2>
+                        <p>Launch a Virtual Machine that you access via <strong>ssh</strong> and provision as needed based on your application.
+                        Tons of options for VM specs based on your usage. We get low-level control of network, security, provisioning, etc (pro and a con).<br />
+                        <small>ECS is takes care of running clusters of EC2 instances with our docker image.<br />Lightsail is running an EC2 instance of a specific type</small></p>
                     </section>
 				</section>
 
                 <section>
-                    <h2><strong>ECS</strong>: Clusters of Containers</h2>
-                    <p><strong>Abstraction Level</strong>: Docker Images</p>
-                </section>
-
-                <section>
                     <h2>Summary</h2>
-                    <ul>
-                        <li>S3 + Cloudfront provides a fast and reliable hosting option that leverages amazon's global caching network</li>
-                        <li>Lambda + API Gateway is a good place to start for deploying API's</li>
-                        <li>AWS is HUUUUUGE</li>
+                    <ul class="fragment">
+                        <li><strong>S3 + Cloudfront</strong> provides a fast and reliable hosting option that leverages amazon's global caching network</li>
+                        <li class="fragment"><strong>Lambda + API Gateway</strong> is a good place to start for deploying API's</li>
+                        <li class="fragment">AWS is HUUUUUGE</li>
                     </ul>
                 </section>
 
