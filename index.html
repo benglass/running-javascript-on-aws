@@ -137,8 +137,8 @@ li::before {
 
                 <section>
                     <section>
-                        <h2>What does this have to do with hosting my files?</h2>
-                        <p>You can create an S3 bucket and upload your SPA files (as objects) to it.</p>
+                        <h2>What does this have to do<br />with <strong>serving a website</strong>?</h2>
+                        <p>You can create an S3 bucket<br />and upload your SPA files (as objects) to it.</p>
                         <ul class="fragment">
                             <li>By default, objects are not publicly accessible and can't be retrieved over HTTP</li>
                             <li class="fragment">but S3 buckets have a feature for <strong>Website Hosting</strong></li>
@@ -158,7 +158,7 @@ li::before {
 
                 <section>
                     <section>
-                        <h2>Pros & Cons S3 Website Hosting</h2>
+                        <h2>Pros & Cons<br /><strong>S3 Website Hosting</strong></h2>
                         <div class="layout-2col">
                             <div>
                                 <h4><strong>Pros</strong></h4>
@@ -181,7 +181,7 @@ li::before {
 
                     <section>
                         <h2>
-                            Improved Option:<br />
+                            Improved Option<br />
                             <strong>S3</strong> + <strong>Cloudfront</strong>
                         </h2>
                         <p>
@@ -191,13 +191,13 @@ li::before {
                         </p>
                     </section>
                     <section>
-                        <h2>Pros & Cons Cloudfront</h2>
+                        <h2>Pros & Cons<br /><strong>Cloudfront</strong></h2>
                         <div class="layout-2col">
                             <div>
                                 <h4><strong>Pros</strong></h4>
                                 <ul>
-                                    <li>Faster</li>
-                                    <li>SSL</li>
+                                    <li>Faster for end-users</li>
+                                    <li>Affordable SSL (ACM)</li>
                                 </ul>
                             </div>
                             <div>
@@ -365,7 +365,7 @@ curl -i -X OPTIONS https://{APIGATEWAYURL}/{STAGE}/suggestions</code></pre>
                         </ul>
                     </section>
                     <section>
-                        <h2>Next Steps</h2>
+                        <h2><strong>Next</strong> Steps</h2>
                         <ul>
                             <li><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains-prerequisites.html">SSL with Amazon Certficiate Manager (ACM)</a></li>
                             <li><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html">Custom Domain</a></li>
@@ -376,9 +376,9 @@ curl -i -X OPTIONS https://{APIGATEWAYURL}/{STAGE}/suggestions</code></pre>
 
                 <section>
                     <section>
-                        <h2>Serverless (the Framework)</h2>
+                        <h2><strong>Serverless</strong> <small>the Framework</small></h2>
                         <p>
-                            Open-source CLI for building and deploying serverless applications to cloud providers (AWS, Azure, Google, IBM, Kubernetes).
+                            Open-source <strong>CLI for building and deploying serverless applications</strong> to cloud providers (AWS, Azure, Google, IBM, Kubernetes).
                         </p>
                     </section>
                     <section>
@@ -447,7 +447,7 @@ curl -i http://localhost:8008/my-endpoint</code></pre></section>
                         </ul>
                     </section>
                     <section>
-                        <h2>But there are other options</h2>
+                        <h2>But there are <strong>other options</strong></h2>
                         <p>You may want to consider other options if...</p>
                         <ul class="fragment">
                             <li>Long-running tasks (5 min max)</li>
